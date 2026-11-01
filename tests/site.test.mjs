@@ -14,6 +14,19 @@ test('homepage has the primary service sections and enquiry destination', () => 
   assert.match(home, /<h1\b/);
 });
 
+test('homepage exposes a labelled mobile navigation toggle without moving the enquiry CTA', () => {
+  assert.match(home, /<button\b[^>]*aria-controls="primary-navigation"[^>]*aria-expanded="false"[^>]*>Menu<\/button>/);
+
+  const navigation = home.match(/<nav\b(?=[^>]*id="primary-navigation")(?=[^>]*aria-label="Primary navigation")[^>]*>([\s\S]*?)<\/nav>/);
+  assert.ok(navigation, 'primary navigation should have the expected id and label');
+  assert.doesNotMatch(navigation[1], /header-cta|Make an enquiry/);
+  assert.match(home, /<a class="button button-small header-cta" href="#contact">Make an enquiry<\/a>/);
+
+  for (const href of ['#services', '#about', '#standards', '#contact']) {
+    assert.match(navigation[1], new RegExp(`href="${href}"`), `missing navigation destination ${href}`);
+  }
+});
+
 test('homepage keeps unconfigured contact and form details honest', () => {
   assert.match(home, /LOLER Inspections/);
   assert.match(home, /online enquiries are not yet available/i);

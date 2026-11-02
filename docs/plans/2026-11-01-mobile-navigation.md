@@ -48,7 +48,7 @@ test('homepage exposes a labelled mobile navigation toggle', () => {
 </button>
 ```
 
-- [ ] Add this Astro client script. The CSS class controls mobile disclosure; desktop visibility remains independent of the class. No focus trap or Escape handler is needed for this inline disclosure.
+- [ ] Add an Astro client script that reveals the toggle only after event handlers are registered, toggles `is-menu-open` and `aria-expanded`, and leaves the nav available if JavaScript does not run. Only intercept links while the mobile disclosure is open; preserve native desktop anchor behavior. For mobile same-page nav links, retain the hash navigation, close the disclosure, and focus the destination's labelled heading so focus does not fall to `body` when the panel closes. No focus trap or Escape handler is needed for this inline disclosure.
 
 ```astro
 <script>
@@ -90,9 +90,9 @@ test('homepage exposes a labelled mobile navigation toggle', () => {
 
 - [ ] At 320px and 390px, assert the CTA and menu toggle are visible, their bounding-box heights match and are at least 44px, and the menu panel is initially hidden with `aria-expanded=false`.
 - [ ] Activate the toggle by role; assert the panel becomes visible, `aria-expanded=true`, and all four links are available. Activate `Services`; assert the URL hash becomes `#services`, the panel closes, and `aria-expanded=false`.
-- [ ] Test keyboard access: focus the menu button, press Enter to open, Tab to the first nav link, and verify focus styling remains visible.
-- [ ] Retain existing no-overflow checks and run them at 320px, 390px, 620px, 768px, and 1440px. At widths above 620px, assert the desktop nav is visible and mobile toggle hidden.
-- [ ] Run `npm run build && npm test`, then run `python3 tests/responsive-check.py` against the local dev server at `http://127.0.0.1:4321/`. Confirm no browser errors and review mobile/desktop screenshots.
+- [ ] Test keyboard access: focus the CTA and press Tab to reach the menu button; press Enter to open, Tab to the first nav link, and verify focus styling remains visible. After activating a link, assert the corresponding heading receives focus and the panel closes.
+- [ ] Retain existing no-overflow checks and run them at 320px, 390px, 620px, 621px, 768px, and 1440px. At widths above 620px, assert the desktop nav is visible and mobile toggle hidden; select a desktop anchor and confirm its hash updates without mobile focus management.
+- [ ] Run `npm run build && npm test`, then run `python3 tests/responsive-check.py` against the local dev server at `http://127.0.0.1:4321/`. Confirm no browser errors and review mobile/desktop screenshots. If the Python Playwright environment is unavailable, perform the same interactions and viewport checks in a browser and report the script limitation.
 - [ ] Commit only the responsive test changes with `test: cover mobile nav interaction and sizing`.
 
 ## Scope and safeguards

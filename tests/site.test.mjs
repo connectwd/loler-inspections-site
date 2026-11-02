@@ -15,12 +15,14 @@ test('homepage has the primary service sections and enquiry destination', () => 
 });
 
 test('homepage exposes a labelled mobile navigation toggle without moving the enquiry CTA', () => {
-  assert.match(home, /<button\b[^>]*aria-controls="primary-navigation"[^>]*aria-expanded="false"[^>]*>Menu<\/button>/);
+  const menuToggle = home.match(/<button\b(?=[^>]*class="menu-toggle")(?=[^>]*aria-controls="primary-navigation")(?=[^>]*aria-expanded="false")[^>]*>Menu<\/button>/);
+  assert.ok(menuToggle, 'menu toggle should be labelled and control the primary navigation');
 
   const navigation = home.match(/<nav\b(?=[^>]*id="primary-navigation")(?=[^>]*aria-label="Primary navigation")[^>]*>([\s\S]*?)<\/nav>/);
   assert.ok(navigation, 'primary navigation should have the expected id and label');
   assert.doesNotMatch(navigation[1], /header-cta|Make an enquiry/);
-  assert.match(home, /<a class="button button-small header-cta" href="#contact">Make an enquiry<\/a>/);
+  const headerCta = home.match(/<a\b(?=[^>]*\bheader-cta\b)(?=[^>]*href="#contact")[^>]*>Make an enquiry<\/a>/);
+  assert.ok(headerCta, 'enquiry CTA should remain outside the controlled navigation');
 
   for (const href of ['#services', '#about', '#standards', '#contact']) {
     assert.match(navigation[1], new RegExp(`href="${href}"`), `missing navigation destination ${href}`);

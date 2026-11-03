@@ -68,10 +68,6 @@ const serviceSchema = {
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     {site.seo.domainVerified && <meta property="og:url" content={canonicalUrl} />}
     {socialImage && <meta property="og:image" content={socialImage} />}
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    {socialImage && <meta name="twitter:image" content={socialImage} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
 

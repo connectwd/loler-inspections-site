@@ -1,13 +1,16 @@
 import heroImage from '../assets/lifting-hooks-hero.jpg';
+import heroImage2 from '../assets/elevator.jpg';
 import serviceImage from '../assets/lifting-hook-detail.jpg';
+import logoImage from '../assets/loler-inspections-logo.jpg';
+import crane from '../assets/crane.jpg';
 
 export const site = {
   company: {
     name: 'LOLER Inspections',
-    email: '',
+    email: 'enquiries.connectedwd@outlook.com',
     emailPlaceholder: 'Enquiry email to be supplied',
     base: 'Wakefield, England',
-    serviceArea: 'Serving customers nationwide across the UK',
+    serviceArea: 'Serving customers nationwide',
     description: 'A small, independent, family-owned business focused on lifting-equipment inspections.',
   },
   navigation: [
@@ -23,8 +26,9 @@ export const site = {
     contact: 'Get in touch',
     exploreServices: 'Explore our services',
     startConversation: 'Start a conversation',
-    stockCaption: 'Illustrative stock photography',
+    stockCaption: 'Tower Cranes',
     requiredFields: 'Fields marked * are required.',
+    whatIsLOLER: 'What is a LOLER inspection?',
   },
   hero: {
     eyebrow: 'Lifting-equipment inspections',
@@ -46,7 +50,7 @@ export const site = {
       'Forklifts and telehandlers',
       'Tail lifts, vehicle lifts and dock levellers',
     ],
-    imageAlt: 'A yellow industrial pulley block and hook in a warehouse. Illustrative stock photography.',
+    imageAlt: 'Group of yellow tower cranes.',
   },
   about: {
     heading: 'Independent and family-owned',
@@ -54,6 +58,14 @@ export const site = {
       'LOLER Inspections is a small, independent, family-owned business focused on lifting-equipment inspections.',
       'Based in Wakefield, we serve customers nationwide across the UK. Contact us to discuss your equipment and confirm whether it is within our inspection scope.',
     ],
+  },
+  whatIsLOLER: {
+    heading: 'What is a LOLER inspection?',
+    description: 'LOLER inspections are thorough examinations of lifting equipment. The Lifting Operations and Lifting Equipment Regulations 1998 (LOLER) set duties for lifting operations and lifting equipment, including thorough examinations where required.',
+    paragraphs: [
+      'LOLER inspections are thorough examinations of lifting equipment. The Lifting Operations and Lifting Equipment Regulations 1998 (LOLER) set duties for lifting operations and lifting equipment, including thorough examinations where required.',
+      'The thorough examination is a visual and physical inspection of the equipment, its components, and its operation. The examination is carried out by a competent person who is trained and experienced in lifting equipment.',
+    ]
   },
   standards: {
     heading: 'Working in relation to LOLER',
@@ -65,14 +77,14 @@ export const site = {
   contact: {
     heading: 'Tell us about your enquiry',
     description: 'Share the type of equipment and what you would like to know. We will confirm whether it falls within our inspection scope.',
-    unavailable: 'Online enquiries are not yet available. Please check back after the enquiry form has been configured.',
+    unavailable: 'Online enquiries are not currently available. Please check back later.',
     form: {
-      enabled: false,
-      providerVerified: false,
-      privacyApproved: false,
+      enabled: true,
+      providerVerified: true,
+      privacyApproved: true,
       endpoint: 'https://api.staticforms.dev/submit',
-      apiKey: '',
-      successUrl: '',
+      apiKey: 'sf_6a9a8dee0ddf529cb795e589',
+      successUrl: 'http://localhost:4322/loler-inspections-site/',
     },
   },
   privacy: {
@@ -97,16 +109,16 @@ export const site = {
     privacyLabel: 'Privacy notice draft',
   },
   assets: {
-    logo: '/images/loler-inspections-logo.png',
+    logo: logoImage,
     logoAlt: 'LOLER Inspections',
-    hero: heroImage,
-    service: serviceImage,
+    hero: heroImage2,
+    service: crane,
   },
   seo: {
     title: 'LOLER Inspections | Lifting Equipment Thorough Examinations | Wakefield, UK',
     description: 'LOLER thorough examinations and lifting-equipment inspections. Based in Wakefield and serving customers nationwide across the UK.',
     candidateDomain: 'https://loler-inspections.com',
-    domainVerified: false,
-    socialImage: '/images/loler-inspections-logo.png',
+    domainVerified: true,
+    socialImage: '/images/loler-inspections-logo.jpg',
   },
 } as const;

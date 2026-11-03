@@ -103,10 +103,10 @@ export const site = {
     service: serviceImage,
   },
   seo: {
-    title: 'LOLER Inspections | Lifting Equipment Thorough Examinations',
+    title: 'LOLER Inspections | Lifting Equipment Thorough Examinations | Wakefield, UK',
     description: 'LOLER thorough examinations and lifting-equipment inspections. Based in Wakefield and serving customers nationwide across the UK.',
     candidateDomain: 'https://loler-inspections.com',
     domainVerified: false,
-    socialImage: '',
+    socialImage: '/images/loler-inspections-logo.png',
   },
 } as const;

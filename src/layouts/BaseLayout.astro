@@ -11,6 +11,49 @@ const { title = site.seo.title, description = site.seo.description } = Astro.pro
 const canonicalUrl = site.seo.domainVerified
   ? new URL(Astro.url.pathname, site.seo.candidateDomain).href
   : undefined;
+const socialImage = site.seo.socialImage
+  ? new URL(site.seo.socialImage, site.seo.candidateDomain).href
+  : undefined;
+
+const baseUrl = site.seo.candidateDomain + '/loler-inspections-site';
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.company.name,
+  description: site.company.description,
+  url: baseUrl,
+  logo: `${baseUrl}${site.assets.logo}`,
+  image: socialImage ?? `${baseUrl}${site.assets.logo}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.company.base,
+    addressCountry: 'GB',
+  },
+  areaServed: 'United Kingdom',
+  priceRange: '££',
+  telephone: site.company.emailPlaceholder,
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Lifting Equipment Thorough Examination',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: site.company.name,
+  },
+  areaServed: 'United Kingdom',
+  description: site.services.description,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Lifting Equipment Inspections',
+    itemListElement: site.services.examples.map((example) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: example },
+    })),
+  },
+};
 ---
 <!doctype html>
 <html lang="en-GB">
@@ -24,9 +67,16 @@ const canonicalUrl = site.seo.domainVerified
     <meta property="og:description" content={description} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     {site.seo.domainVerified && <meta property="og:url" content={canonicalUrl} />}
-    {site.seo.domainVerified && site.seo.socialImage && <meta property="og:image" content={new URL(site.seo.socialImage, site.seo.candidateDomain).href} />}
+    {socialImage && <meta property="og:image" content={socialImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {socialImage && <meta name="twitter:image" content={socialImage} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema, null, 2)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema, null, 2)} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

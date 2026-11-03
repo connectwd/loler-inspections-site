@@ -164,7 +164,7 @@ const enquiryFormReady =
         <div class="contact-panel">
           <h3>{site.labels.startConversation}</h3>
           {
-            !enquiryFormReady ? (
+            enquiryFormReady ? (
               <form
                 action={site.contact.form.endpoint}
                 method="POST"

@@ -1,6 +1,4 @@
-import heroImage from '../assets/lifting-hooks-hero.jpg';
 import heroImage2 from '../assets/elevator.jpg';
-import serviceImage from '../assets/lifting-hook-detail.jpg';
 import logoImage from '../assets/loler-inspections-logo.jpg';
 import crane from '../assets/crane.jpg';
 

@@ -6,12 +6,21 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "node --test"
+    "test": "node --test",
+    "test:e2e": "playwright test",
+    "test:e2e:ci": "playwright test --project=chromium",
+    "test:e2e:ui": "playwright test --ui",
+    "monitor:lh": "lighthouse http://127.0.0.1:4321 --chrome-flags=\"--headless\" --output=json --output-path=lighthouse-report.json"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",
     "@astrojs/sitemap": "^3.7.4",
     "astro": "7.4.4",
     "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.6",
+    "lighthouse": "^13.6.0"
   }
 }

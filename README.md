@@ -29,15 +29,7 @@ The site is prerendered to `dist/`; it has no app server, database, CMS, analyti
 
 The form fields are visible but disabled by default. An active form is rendered only when `site.contact.form.enabled`, `providerVerified`, `privacyApproved`, a non-empty API key, success URL, confirmed company email, and `site.seo.domainVerified` are all set. Thus adding a provider key alone cannot accidentally enable submissions. There is no fake email address, provider endpoint, or success claim. The actual enquiry email is not supplied yet.
 
-StaticForms currently documents a native HTML `POST` to `https://api.staticforms.dev/submit` with a hidden `apiKey`, and optional absolute `redirectTo`. A successful post returns a `303` redirect to an absolute configured URL; a failure stays on the provider's error response. Once configured and verified, set the relevant enablement flags, provide the real email and deployed `https://<owned-domain>/enquiry-received/` success URL in `src/content/site.ts`, and set the StaticForms account key as the `PUBLIC_STATICFORMS_API_KEY` environment variable (see below). Never add a guessed key or commit it. StaticForms' integration FAQ says the key is public and intended for HTML, while its Terms say to keep API keys confidential; resolve that conflict with the provider/account terms before publishing a key. Use domain restriction if available.
-
-### Environment variables
-
-| Variable | Where to set | Notes |
-|---|---|---|
-| `PUBLIC_STATICFORMS_API_KEY` | Cloudflare Pages → Settings → Environment variables → Production | StaticForms account key for the enquiry form. For local development, copy `.env.example` to `.env` (gitignored) and set the value there. Without it the form stays unavailable. |
-
-The key is intentionally not stored in `src/content/site.ts`.
+StaticForms currently documents a native HTML `POST` to `https://api.staticforms.dev/submit` with a hidden `apiKey`, and optional absolute `redirectTo`. A successful post returns a `303` redirect to an absolute configured URL; a failure stays on the provider's error response. Once configured and verified, set the relevant enablement flags, provide the real email, account key and deployed `https://<owned-domain>/enquiry-received/` URL in `src/content/site.ts`, and review the conditional form in `src/pages/index.astro`. Never add a guessed key. StaticForms' integration FAQ says the key is public and intended for HTML, while its Terms say to keep API keys confidential; resolve that conflict with the provider/account terms before publishing a key. Use domain restriction if available.
 
 Current provider facts checked 31 October 2026: StaticForms advertises Free at 250 submissions per 30 days, Starter at $4/month billed yearly ($48/year), Pro at $7.50/month billed yearly ($90/year), and its free page advertises submission records retained up to one year with only the latest 30 days available in the inbox. The official Privacy Policy, Terms, pricing and security pages contain conflicting or plan-dependent details on storage, CAPTCHA, API-key confidentiality, and quotas/prices. Re-check the actual account/dashboard and provider terms before choosing it. No provider account exists here, so delivery is **not configured or end-to-end tested**.
 

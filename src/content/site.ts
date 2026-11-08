@@ -1,6 +1,10 @@
 import heroImage2 from '../assets/elevator.jpg';
 import logoImage from '../assets/loler-inspections-logo.jpg';
-import crane from '../assets/crane.jpg';
+import ctfs from '../assets/cfts.jpg';
+import ukmha from '../assets/UKMHA-logo-small.png';
+import safeContractor from '../assets/safecontractor-approved.png';
+import dbsCheck from '../assets/enhanced-dbs-check-transparent.png';
+import forkLift from '../assets/pexels-caleboquendo-34585143.jpg'
 
 export const site = {
   company: {
@@ -21,10 +25,11 @@ export const site = {
     services: 'Our services',
     about: 'About us',
     standards: 'Standards',
+    certifications: 'Certifications',
     contact: 'Get in touch',
     exploreServices: 'Explore our services',
     startConversation: 'Start a conversation',
-    stockCaption: 'Tower Cranes',
+    stockCaption: 'Forklift',
     requiredFields: 'Fields marked * are required.',
     whatIsLOLER: 'What is a LOLER inspection?',
   },
@@ -43,12 +48,11 @@ export const site = {
     examples: [
       'Passenger, goods, service and platform lifts',
       'Dumbwaiters and patient hoists',
-      'Mobile, tower and gantry cranes',
       'Vehicle-mounted cranes (HIABs)',
       'Forklifts and telehandlers',
       'Tail lifts, vehicle lifts and dock levellers',
     ],
-    imageAlt: 'Group of yellow tower cranes.',
+    imageAlt: 'Green forklift.',
   },
   about: {
     heading: 'Independent and family-owned',
@@ -69,20 +73,27 @@ export const site = {
     heading: 'Working in relation to LOLER',
     description: 'The Lifting Operations and Lifting Equipment Regulations 1998 (LOLER) set duties for lifting operations and lifting equipment, including thorough examinations where required.',
     linkLabel: 'Read the Lifting Operations and Lifting Equipment Regulations 1998',
-    link: 'https://www.legislation.gov.uk/uksi/1998/2307/contents',
-    credentialsPending: 'Credential and qualification wording is awaiting client approval. It is not published here yet.',
+    link: 'https://www.hse.gov.uk/work-equipment-machinery/loler-overview.htm',
+    credentials: [
+      { name: 'CTFS Certified', logo: ctfs },
+      { name: 'SafeContractor Approved', logo: safeContractor },
+      { name: 'ukmha Certified', logo: ukmha },
+      { name: 'Enhanced BDS Checked', logo: dbsCheck },
+    ],
   },
   contact: {
     heading: 'Tell us about your enquiry',
     description: 'Share the type of equipment and what you would like to know. We will confirm whether it falls within our inspection scope.',
     unavailable: 'Online enquiries are not currently available. Please check back later.',
     form: {
+      // The StaticForms API key is not committed here. It is supplied at build
+      // time via the PUBLIC_STATICFORMS_API_KEY environment variable (set in
+      // Cloudflare Pages for production; in .env, gitignored, for local dev).
       enabled: true,
       providerVerified: true,
       privacyApproved: true,
       endpoint: 'https://api.staticforms.dev/submit',
-      apiKey: 'sf_6a9a8dee0ddf529cb795e589',
-      successUrl: 'http://localhost:4322/loler-inspections-site/',
+      successUrl: 'http://localhost:4322/enquiry-received/',
     },
   },
   privacy: {
@@ -110,7 +121,7 @@ export const site = {
     logo: logoImage,
     logoAlt: 'LOLER Inspections',
     hero: heroImage2,
-    service: crane,
+    service: forkLift,
   },
   seo: {
     title: 'LOLER Inspections | Lifting Equipment Thorough Examinations | Wakefield, UK',

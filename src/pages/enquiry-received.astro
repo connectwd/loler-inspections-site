@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../content/site';
+import { Image } from 'astro:assets';
 ---
 <BaseLayout title={`Enquiry received | ${site.company.name}`} description="Enquiry form confirmation.">
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label={`${site.company.name} home`}>
-        <img src={site.assets.logo} alt={site.assets.logoAlt} width="280" height="140" class="brand-logo" />
+        <Image src={site.assets.logo} alt={site.assets.logoAlt} width="280" height="140" class="brand-logo" />
       </a>
     </div>
   </header>

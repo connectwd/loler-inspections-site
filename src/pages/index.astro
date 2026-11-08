@@ -4,11 +4,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../content/site";
 
 const currentYear = new Date().getFullYear();
+// StaticForms API key pulled from the environment at build time (never committed).
+// Cloudflare Pages: set PUBLIC_STATICFORMS_API_KEY in project environment variables.
+// Local dev: set it in `.env` (gitignored). Without it the form stays unavailable.
+const staticFormsApiKey = import.meta.env.PUBLIC_STATICFORMS_API_KEY;
+
 const enquiryFormReady =
   site.contact.form.enabled &&
   site.contact.form.providerVerified &&
   site.contact.form.privacyApproved &&
-  site.contact.form.apiKey &&
+  staticFormsApiKey &&
   site.company.email &&
   site.seo.domainVerified;
 ---
@@ -106,7 +111,6 @@ const enquiryFormReady =
             loading="lazy"
             class="service-image"
           />
-          <figcaption>{site.labels.stockCaption}</figcaption>
         </figure>
       </div>
     </section>
@@ -139,6 +143,19 @@ const enquiryFormReady =
             {site.standards.linkLabel}
             <span aria-hidden="true">↗</span>
           </a>
+          <div class="credentials-grid">
+            {site.standards.credentials.map((credential) => (
+              <div class="credential-item">
+                <Image
+                  src={credential.logo}
+                  alt={credential.name}
+                  width={110}
+                  height={80}
+                />
+                <span>{credential.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -149,10 +166,10 @@ const enquiryFormReady =
       aria-labelledby="contact-title"
     >
       <div class="container contact-layout">
-        <div class="containe about-contact-wrap">
+        <div class="container about-contact-wrap">
           <div class="about-copy">
             <p class="eyebrow"><span></span>{site.labels.about}</p>
-            <h2 id="about-title">{site.about.heading}</h2>
+            <h2 id="contact-about-title">{site.about.heading}</h2>
             {site.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
           </div>
           <div class="contact-copy">
@@ -173,7 +190,7 @@ const enquiryFormReady =
                 <input
                   type="hidden"
                   name="apiKey"
-                  value={site.contact.form.apiKey}
+                  value={staticFormsApiKey}
                 />
                 {site.contact.form.successUrl && (
                   <input

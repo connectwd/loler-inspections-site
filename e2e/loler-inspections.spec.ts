@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = 'http://127.0.0.1:4321/';
+const BASE_URL = 'http://127.0.0.1:4321/loler-inspections-site';
 
 test.describe('LOLER Inspections Site - User Experience Tests', () => {
   test('homepage loads correctly', async ({ page }) => {

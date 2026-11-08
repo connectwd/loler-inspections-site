@@ -3,8 +3,8 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   output: 'static',
-  base: '/',
-  site: 'https://loler-inspections.com/',
+  base: '/loler-inspections-site/',
+  site: 'https://loler-inspections.com/loler-inspections-site/',
   devToolbar: {
     enabled: false,
   },

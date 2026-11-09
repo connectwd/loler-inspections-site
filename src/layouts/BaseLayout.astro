@@ -15,7 +15,8 @@ const socialImage = site.seo.socialImage
   ? new URL(site.seo.socialImage, site.seo.candidateDomain).href
   : undefined;
 
-const baseUrl = site.seo.candidateDomain + '/loler-inspections-site';
+const basePath = import.meta.env.BASE_URL || '/loler-inspections-site';
+const baseUrl = site.seo.candidateDomain + basePath;
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',

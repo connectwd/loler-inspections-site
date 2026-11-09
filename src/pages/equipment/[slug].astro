@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { site } from '../../content/site';
+
+export async function getStaticPaths() {
+  const equipment = await getCollection('equipment');
+  return equipment.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'equipment'>;
+}
+
+const { entry } = Astro.props as Props;
+const { Content } = await render(entry);
+
+const allEquipment = await getCollection('equipment');
+const related = allEquipment.filter((other) => other.id !== entry.id);
+
+const title = entry.data.title;
+const description = entry.data.description;
+---
+
+<BaseLayout title={title} description={description}>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label={`${site.company.name} home`}>
+        <Image
+          src={site.assets.logo}
+          alt={site.assets.logoAlt}
+          width={280}
+          height={140}
+          class="brand-logo"
+        />
+      </a>
+      <a class="text-link" href="/equipment/">Equipment guides <span aria-hidden="true">←</span></a>
+    </div>
+  </header>
+
+  <main id="main" class="equipment-guide" aria-labelledby="equipment-title">
+    <div class="container equipment-guide-inner">
+      <nav class="equipment-breadcrumb" aria-label="Breadcrumb">
+        <ol class="equipment-breadcrumb-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/equipment/">Equipment guides</a></li>
+          <li aria-current="page">{title}</li>
+        </ol>
+      </nav>
+
+      <header class="equipment-hero">
+        <p class="eyebrow"><span></span>{entry.data.category}</p>
+        <h1 id="equipment-title">{title}</h1>
+        <p class="equipment-intro">{entry.data.intro}</p>
+        <a class="button" href="/#contact">
+          Make an enquiry<span aria-hidden="true">→</span>
+        </a>
+      </header>
+
+      <article class="equipment-article">
+        <Content />
+      </article>
+
+      {related.length > 0 && (
+        <aside class="equipment-sidebar">
+          <h3>About this guide</h3>
+          <p class="equipment-about-muted">
+            General information about {title.toLowerCase()} and LOLER thorough examinations. Contact us
+            to confirm whether this equipment is within our inspection scope.
+          </p>
+          <h3>Related guides</h3>
+          <ul class="equipment-related-list">
+            {related.map((other) => (
+              <li>
+                <a href={`/equipment/${other.id}/`}>{other.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <a class="footer-brand" href="#top">{site.company.name}</a>
+      <p>{site.company.serviceArea}</p>
+    </div>
+    <div class="container footer-bottom">
+      <span>{site.company.name}. {site.footer.copyright}</span>
+      <span>Website created by <em>Connected Web Development</em></span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .equipment-guide-inner {
+    margin-bottom: var(--space-16);
+  }
+  .equipment-breadcrumb {
+    font-size: var(--step--1);
+    color: var(--muted);
+    margin-bottom: var(--space-6);
+  }
+  .equipment-breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .equipment-breadcrumb a {
+    color: var(--navy);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  .equipment-breadcrumb a:hover {
+    color: var(--gold);
+  }
+  .equipment-hero {
+    margin-bottom: var(--space-12);
+  }
+  .equipment-hero .eyebrow {
+    margin: 0 0 var(--space-3) 0;
+  }
+  .equipment-intro {
+    font-size: var(--step-1);
+    color: var(--muted);
+    max-width: 62ch;
+  }
+  .equipment-article h2,
+  .equipment-article h3,
+  .equipment-article h4 {
+    margin-top: var(--space-12);
+  }
+  .equipment-article h2:first-child,
+  .equipment-article h3:first-child,
+  .equipment-article h4:first-child {
+    margin-top: 0;
+  }
+  .equipment-article blockquote {
+    border-left: 3px solid var(--gold);
+    background: #faf7ef;
+    padding: var(--space-4) var(--space-6);
+    margin: var(--space-6) 0;
+    font-size: var(--step-0);
+  }
+  .equipment-sidebar {
+    padding: var(--space-6);
+    background: var(--tint);
+    border-top: 3px solid var(--gold);
+    margin-top: var(--space-12);
+  }
+  .equipment-sidebar h3 {
+    margin-top: 0;
+    font-size: var(--step-1);
+  }
+  .equipment-about-muted {
+    color: var(--muted);
+    font-size: var(--step--1);
+    margin: 0 0 var(--space-4) 0;
+  }
+  .equipment-related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .equipment-related-list li {
+    margin: var(--space-2) 0;
+  }
+  .equipment-list {
+    list-style: none;
+    margin: var(--space-8) 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .equipment-list-item {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .equipment-list-link {
+    font-size: var(--step-2);
+    font-weight: 700;
+    color: var(--navy);
+    text-decoration: none;
+  }
+  .equipment-list-link:hover {
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  .equipment-list-description {
+    color: var(--muted);
+    font-size: var(--step-0);
+    margin: 0;
+  }
+  .equipment-directory-intro {
+    font-size: var(--step-0);
+    color: var(--muted);
+    max-width: 62ch;
+    margin-bottom: var(--space-8);
+  }
+
+  @media (max-width: 620px) {
+    .equipment-breadcrumb-list {
+      gap: var(--space-1);
+    }
+    .equipment-sidebar {
+      padding: var(--space-4);
+    }
+    .equipment-list-item {
+      padding: var(--space-4);
+    }
+  }
+</style>

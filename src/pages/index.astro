@@ -101,8 +101,10 @@ const enquiryFormReady =
           <ul class="example-list">
             {site.services.examples.map((example) => <li>{example}</li>)}
           </ul>
+          <!-- <p class="equipment-guides-link">
+            <a class="text-link" href="/equipment/">View equipment guides<span aria-hidden="true">→</span></a>
+          </p> -->
         </div>
-        <figure class="service-image-wrap">
           <Image
             src={site.assets.service}
             alt={site.services.imageAlt}
@@ -111,7 +113,6 @@ const enquiryFormReady =
             loading="lazy"
             class="service-image"
           />
-        </figure>
       </div>
     </section>
 
@@ -144,17 +145,19 @@ const enquiryFormReady =
             <span aria-hidden="true">↗</span>
           </a>
           <div class="credentials-grid">
-            {site.standards.credentials.map((credential) => (
-              <div class="credential-item">
-                <Image
-                  src={credential.logo}
-                  alt={credential.name}
-                  width={110}
-                  height={80}
-                />
-                <span>{credential.name}</span>
-              </div>
-            ))}
+            {
+              site.standards.credentials.map((credential) => (
+                <div class="credential-item">
+                  <Image
+                    src={credential.logo}
+                    alt={credential.name}
+                    width={110}
+                    height={80}
+                  />
+                  <span>{credential.name}</span>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -166,8 +169,8 @@ const enquiryFormReady =
       aria-labelledby="contact-title"
     >
       <div class="container contact-layout">
-        <div class="container about-contact-wrap">
-          <div class="about-copy">
+        <div class="about-contact-wrap">
+          <div>
             <p class="eyebrow"><span></span>{site.labels.about}</p>
             <h2 id="contact-about-title">{site.about.heading}</h2>
             {site.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
@@ -177,127 +180,81 @@ const enquiryFormReady =
             <h2 id="contact-title">{site.contact.heading}</h2>
             <p>{site.contact.description}</p>
           </div>
+          <Image
+            src={site.assets.contact}
+            alt={site.contact.imgAlt}
+            width={480}
+            class="contact-image"
+          />
         </div>
         <div class="contact-panel">
           <h3>{site.labels.startConversation}</h3>
-          {
-            enquiryFormReady ? (
-              <form
-                action={site.contact.form.endpoint}
-                method="POST"
-                class="enquiry-form"
-              >
+          <form
+            action={site.contact.form.endpoint}
+            method="POST"
+            class="enquiry-form"
+          >
+            <input type="hidden" name="apiKey" value={staticFormsApiKey} />
+            {
+              site.contact.form.successUrl && (
                 <input
                   type="hidden"
-                  name="apiKey"
-                  value={staticFormsApiKey}
+                  name="redirectTo"
+                  value={site.contact.form.successUrl}
                 />
-                {site.contact.form.successUrl && (
-                  <input
-                    type="hidden"
-                    name="redirectTo"
-                    value={site.contact.form.successUrl}
-                  />
-                )}
-                <p class="form-required-note">{site.labels.requiredFields}</p>
-                <label for="name">
-                  Name <span aria-hidden="true">*</span>
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autocomplete="name"
-                  required
-                />
-                <label for="company">
-                  Company <span class="optional">(optional)</span>
-                </label>
-                <input
-                  id="company"
-                  name="company"
-                  type="text"
-                  autocomplete="organization"
-                />
-                <label for="email">
-                  Email address <span aria-hidden="true">*</span>
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  required
-                />
-                <label for="message">
-                  Equipment or service enquiry <span aria-hidden="true">*</span>
-                </label>
-                <textarea id="message" name="message" rows="5" required />
-                <label class="honeypot" aria-hidden="true">
-                  Leave this field empty{" "}
-                  <input name="honeypot" tabindex="-1" autocomplete="off" />
-                </label>
-                <button class="button" type="submit">
-                  Send enquiry
-                </button>
-              </form>
-            ) : (
-              <>
-                <p
-                  class="contact-unavailable"
-                  id="form-unavailable"
-                  role="status"
-                >
-                  {site.contact.unavailable}
-                </p>
-                <form class="enquiry-form" aria-describedby="form-unavailable">
-                  <fieldset disabled>
-                    <legend>Enquiry details</legend>
-                    <p class="form-required-note">
-                      {site.labels.requiredFields}
-                    </p>
-                    <label for="name">
-                      Name <span aria-hidden="true">*</span>
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      autocomplete="name"
-                      required
-                    />
-                    <label for="company">
-                      Company <span class="optional">(optional)</span>
-                    </label>
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      autocomplete="organization"
-                    />
-                    <label for="email">
-                      Email address <span aria-hidden="true">*</span>
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autocomplete="email"
-                      required
-                    />
-                    <label for="message">
-                      Equipment or service enquiry{" "}
-                      <span aria-hidden="true">*</span>
-                    </label>
-                    <textarea id="message" name="message" rows="5" required />
-                    <button class="button" type="button" disabled>
-                      Form setup pending
-                    </button>
-                  </fieldset>
-                </form>
-              </>
-            )
-          }
+              )
+            }
+            <p class="form-required-note">{site.labels.requiredFields}</p>
+            <label for="name">
+              Name <span aria-hidden="true">*</span>
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            />
+            <label for="company">
+              Company <span aria-hidden="true">*</span>
+            </label>
+            <input
+              id="company"
+              name="company"
+              type="text"
+              autocomplete="organization"
+              required
+            />
+            <label for="contactNumber">
+              Contact number <span aria-hidden="true">*</span>
+            </label>
+            <input
+              id="contactNumber"
+              name="contactNumber"
+              type="number"
+              autocomplete="tel"
+              required
+            />
+            <label for="email">
+              Email address <span aria-hidden="true">*</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+            <label for="message">
+              Equipment or service enquiry <span aria-hidden="true">*</span>
+            </label>
+            <textarea id="message" name="message" rows="3" required></textarea>
+            <label class="honeypot" aria-hidden="true">
+              Leave this field empty{" "}
+              <input name="honeypot" tabindex="-1" autocomplete="off" />
+            </label>
+            <button class="button" type="submit"> Send enquiry </button>
+          </form>
           <p class="email-placeholder">{site.company.emailPlaceholder}</p>
           <a class="text-link" href="/privacy/"
             >Read our privacy notice<span aria-hidden="true">→</span></a

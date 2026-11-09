@@ -4,13 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../content/site";
 
 const currentYear = new Date().getFullYear();
-const enquiryFormReady =
-  site.contact.form.enabled &&
-  site.contact.form.providerVerified &&
-  site.contact.form.privacyApproved &&
-  site.contact.form.apiKey &&
-  site.company.email &&
-  site.seo.domainVerified;
+const staticFormsApiKey = import.meta.env.PUBLIC_STATICFORMS_API_KEY;
 ---
 
 <BaseLayout>

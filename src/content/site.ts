@@ -77,8 +77,13 @@ export const site = {
     heading: 'Working in relation to LOLER',
     description: 'The Lifting Operations and Lifting Equipment Regulations 1998 (LOLER) set duties for lifting operations and lifting equipment, including thorough examinations where required.',
     linkLabel: 'Read the Lifting Operations and Lifting Equipment Regulations 1998',
-    link: 'https://www.legislation.gov.uk/uksi/1998/2307/contents',
-    credentialsPending: 'Credential and qualification wording is awaiting client approval. It is not published here yet.',
+    link: 'https://www.hse.gov.uk/work-equipment-machinery/loler-overview.htm',
+    credentials: [
+      { name: 'CTFS Certified', logo: ctfs },
+      { name: 'SafeContractor Approved', logo: safeContractor },
+      { name: 'ukmha Certified', logo: ukmha },
+      { name: 'Enhanced BDS Checked', logo: dbsCheck },
+    ],
   },
   contact: {
     heading: 'Tell us about your enquiry',

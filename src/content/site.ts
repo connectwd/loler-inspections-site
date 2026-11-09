@@ -4,14 +4,15 @@ import ctfs from '../assets/cfts.jpg';
 import ukmha from '../assets/UKMHA-logo-small.png';
 import safeContractor from '../assets/safecontractor-approved.png';
 import dbsCheck from '../assets/enhanced-dbs-check-transparent.png';
-import forkLift from '../assets/pexels-caleboquendo-34585143.jpg'
+import forkLift from '../assets/pexels-caleboquendo-34585143.jpg';
+import fallProtection from '../assets/fall-protection.jpg';
 
 export const site = {
   company: {
     name: 'LOLER Inspections',
     email: 'enquiries.connectedwd@outlook.com',
     emailPlaceholder: 'Enquiry email to be supplied',
-    base: 'Wakefield, England',
+    base: 'West Yorkshire',
     serviceArea: 'Serving customers nationwide',
     description: 'A small, independent, family-owned business focused on lifting-equipment inspections.',
   },
@@ -44,13 +45,17 @@ export const site = {
     heading: 'Thorough examinations, clearly explained',
     description: 'LOLER sets requirements for the thorough examination of lifting equipment. The examination and its interval depend on the equipment and how it is used.',
     examplesLabel: 'Examples of equipment that may be subject to LOLER',
-    examplesNote: 'These are general examples, not a confirmed list of equipment inspected by this business. Please ask us to confirm the inspection scope for your equipment.',
     examples: [
       'Passenger, goods, service and platform lifts',
-      'Dumbwaiters and patient hoists',
-      'Vehicle-mounted cranes (HIABs)',
-      'Forklifts and telehandlers',
+      'Patient hoists and lifting equipment for healthcare',
+      'Dumbwaiters',
+      'Forklifts, telehandlers and all accessories',
       'Tail lifts, vehicle lifts and dock levellers',
+      'Sissor tables',
+      'Access platform equiptment',
+      'Height safety equiptment',
+      'Workshop equiptment',
+      'Warehouse equiptment'
     ],
     imageAlt: 'Green forklift.',
   },
@@ -95,6 +100,7 @@ export const site = {
       endpoint: 'https://api.staticforms.dev/submit',
       successUrl: 'http://localhost:4322/enquiry-received/',
     },
+    imgAlt: 'Lifting Equiptment'
   },
   privacy: {
     draftLabel: 'Draft — not approved for production',
@@ -122,6 +128,7 @@ export const site = {
     logoAlt: 'LOLER Inspections',
     hero: heroImage2,
     service: forkLift,
+    contact: fallProtection,
   },
   seo: {
     title: 'LOLER Inspections | Lifting Equipment Thorough Examinations | Wakefield, UK',

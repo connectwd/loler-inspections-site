@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Implementation plan for adding equipment SEO guides to the LOLER Inspections website.">
+<title>LOLER Equipment SEO Pages — Implementation Plan</title>
+<style>
+:root{--navy:#142d45;--blue:#456783;--gold:#c69a43;--ink:#263746;--muted:#657582;--line:#dce3e8;--surface:#f4f7f9}
+*{box-sizing:border-box}body{margin:0;background:#edf1f4;color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+.document{max-width:1080px;margin:auto;background:white}header{padding:52px 7%;background:var(--navy);color:white;border-bottom:5px solid var(--gold)}
+.eyebrow{color:#d9c18f;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700}
+header h1{max-width:760px;margin:10px 0;font-size:clamp(2rem,5vw,3.1rem);line-height:1.15}header p{max-width:720px;color:#e0e8ee;font-size:1.1rem}
+main{padding:40px 7% 60px}section{margin-bottom:46px}h2,h3,h4{color:var(--navy);line-height:1.25}h2{font-size:1.7rem;border-bottom:1px solid var(--line);padding-bottom:10px}h3{margin-top:24px}li{margin:6px 0}.intro{font-size:1.08rem;color:#435666}
+.note{padding:16px 18px;background:#faf7ef;border-left:4px solid var(--gold)}.muted{color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.step{padding:17px;background:var(--surface);border:1px solid var(--line)}.step h3{margin-top:0}
+.tag{display:inline-block;margin:3px;padding:3px 9px;border:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+.example{margin-top:20px;border:1px solid #cbd5dc;box-shadow:0 8px 28px #142d4510}.browser{padding:10px 14px;background:#eef2f5;border-bottom:1px solid var(--line);color:#687985;font-size:.82rem}
+.site{padding:0 5%}.nav{display:flex;justify-content:space-between;gap:15px;padding:18px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:.84rem}.brand{color:var(--navy);font-weight:750}
+.hero{padding:38px 0 28px;max-width:780px}.crumb{font-size:.82rem;color:var(--muted)}.hero h2{font-size:clamp(1.8rem,4vw,2.6rem);border:0;padding:0;margin:12px 0}.hero p{color:#526575;font-size:1.06rem}
+.btn{display:inline-block;padding:10px 16px;background:var(--navy);color:white;text-decoration:none;font-weight:650}
+.content{display:grid;grid-template-columns:minmax(0,1fr) 235px;gap:34px;padding:15px 0 35px}.article h3{margin-top:0}.article h4{margin:20px 0 5px}
+.side{align-self:start;padding:18px;background:var(--surface);border-top:3px solid var(--gold)}.side h3{margin-top:0}.callout{padding:16px;background:#f5f7f8;border-left:3px solid var(--blue);margin:20px 0}
+.sitefoot{padding:18px 0;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;text-align:left}th,td{padding:11px;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--surface);color:var(--navy)}
+pre{overflow:auto;padding:16px;background:#172b3d;color:#e7eef3;font-size:.88rem}code{font-size:.9em}
+footer{padding:20px 7%;background:var(--navy);color:#d9e1e7;font-size:.85rem}
+@media(max-width:720px){main{padding:28px 5% 42px}header{padding:40px 5%}.steps,.content{grid-template-columns:1fr}.nav span:last-child{display:none}}
+@media print{body{background:white}.document{max-width:none}}
+</style>
+</head>
+<body><div class="document">
+<header><div class="eyebrow">Website development plan</div><h1>LOLER equipment guide pages</h1><p>A small, maintainable set of useful equipment guides, integrated into the existing Astro website without a CMS or paid service.</p></header>
+<main>
+<section><h2>1. Objective</h2>
+<p class="intro">Add an equipment information area that can attract relevant search traffic, answer common questions about thorough examinations and give visitors a clear route to enquire.</p>
+<ul><li>Use one reusable page template rather than designing every page independently.</li><li>Start with a small number of equipment types approved by the business.</li><li>Publish distinct, useful information rather than near-identical keyword pages.</li><li>Use Astro static generation and Markdown. No database, CMS or runtime service is required.</li></ul>
+<p class="note"><strong>Scope rule:</strong> a guide must not imply that LOLER Inspections provides inspections for an equipment type until the business confirms that service. General educational information and the company's actual service offering must be clearly distinguished.</p>
+</section>
+
+<section><h2>2. Implementation plan</h2><div class="steps">
+<article class="step"><h3>Confirm topics and scope</h3><p>Agree the initial equipment types and which are confirmed services before writing or publishing.</p></article>
+<article class="step"><h3>Add an Astro content collection</h3><p>Store each guide as Markdown with validated frontmatter for title, description, introduction, category and display order.</p></article>
+<article class="step"><h3>Create one detail template</h3><p>Use a dynamic route for all guides. Reuse the existing BaseLayout, navigation, footer, styles and SEO metadata conventions.</p></article>
+<article class="step"><h3>Create the equipment directory</h3><p>Add a simple index page listing each guide with a short description. Link to it from an appropriate existing page.</p></article>
+<article class="step"><h3>Add SEO and accessibility</h3><p>Use unique titles and descriptions, semantic headings, descriptive links, verified canonical URLs and sitemap inclusion.</p></article>
+<article class="step"><h3>Test and publish</h3><p>Build the site, run existing tests, add route/content checks and get technical wording approved before deployment.</p></article>
+</div></section>
+
+<section><h2>3. Candidate pages and URLs</h2><p>These are topic suggestions, not confirmed services. The business must approve the list.</p>
+<p><span class="tag">/equipment/</span><span class="tag">/equipment/lifting-beams/</span><span class="tag">/equipment/chain-slings/</span><span class="tag">/equipment/shackles/</span><span class="tag">/equipment/overhead-cranes/</span><span class="tag">/equipment/hoists/</span></p>
+<ol><li>Choose one equipment type the business confirms is relevant.</li><li>Build and review that page before creating the others.</li><li>Add the remaining approved guides in small batches.</li><li>Use Search Console data to decide whether further topics are worthwhile.</li></ol>
+</section>
+
+<section><h2>4. Example of an individual SEO page</h2>
+<p>This is a layout/content example for a hypothetical <strong>lifting beams</strong> guide. It is not approved service or legal content. The business must review the service scope and technical statements against current HSE guidance before publication.</p>
+<div class="example"><div class="browser">● &nbsp; ● &nbsp; ● &nbsp; loler-inspections.com/equipment/lifting-beams/</div><div class="site">
+<div class="nav"><strong class="brand">LOLER INSPECTIONS</strong><span>Home &nbsp; About &nbsp; Services &nbsp; Equipment guides &nbsp; Contact</span></div>
+<div class="hero"><div class="crumb">Home / Equipment guides / Lifting beams</div><h2>LOLER inspections of lifting beams</h2><p>Understand what lifting beams are used for, when they may require a thorough examination and the types of condition issues an examination may identify.</p><a class="btn" href="#example-contact">Make an enquiry</a></div>
+<div class="content"><article class="article">
+<h3>What is a lifting beam?</h3><p>A lifting beam is a below-the-hook lifting device used to support and distribute a load between lifting points. Designs vary, so its configuration, markings and intended use matter when assessing suitability and examination requirements.</p>
+<h3>When does a lifting beam require a LOLER thorough examination?</h3><p>Where a lifting beam is lifting equipment within the scope of LOLER, it must be thoroughly examined at the applicable intervals or in accordance with a written scheme of examination. The correct arrangements depend on the equipment and how it is used.</p>
+<div class="callout"><strong>Do not assume one inspection interval applies to every lifting beam.</strong> The applicable category and interval must be established for the particular equipment and use.</div>
+<h3>What may an examination consider?</h3><ul><li>Identification, safe working load and relevant markings.</li><li>Visible deformation, cracking, corrosion or damage.</li><li>Welds, lifting points, pins, connections and other load-bearing features.</li><li>Whether the equipment remains suitable for its intended configuration and use.</li></ul>
+<h3>What happens if a defect is found?</h3><p>The competent person records the examination findings and identifies defects that could present a risk. Statutory reporting and notification requirements apply in specified circumstances. Equipment should not be returned to use until it is safe to do so.</p>
+<h3>How often should a lifting beam be examined?</h3><p>LOLER provides default thorough-examination intervals for categories of lifting equipment, while a properly drawn-up written scheme can set the examination regime. The applicable category and interval must be confirmed for the particular equipment and its use.</p>
+<h3>Discuss your lifting equipment requirements</h3><p>If this equipment is within the company's confirmed service scope, invite the visitor to contact the business to discuss the equipment, its use and the required examination arrangements.</p><a class="btn" id="example-contact" href="/#contact">Make an enquiry</a>
+</article><aside class="side"><h3>About this guide</h3><p class="muted">A concise guide to lifting beams and LOLER thorough examinations.</p><h3>Related guides</h3><ul><li><a href="/equipment/chain-slings/">Chain slings</a></li><li><a href="/equipment/shackles/">Shackles</a></li><li><a href="/equipment/hoists/">Hoists</a></li></ul><p class="muted">Only show related links once those pages exist and have been reviewed.</p></aside></div>
+<div class="sitefoot">LOLER Inspections · Equipment information · Existing site contact and business details</div>
+</div></div>
+<h3>Example SEO metadata</h3><ul><li><strong>Title:</strong> LOLER Inspections of Lifting Beams | LOLER Inspections</li><li><strong>Description:</strong> Learn what lifting beams are, when LOLER thorough examinations may apply and what an examination can cover.</li><li><strong>H1:</strong> LOLER inspections of lifting beams</li><li><strong>URL:</strong> <code>/equipment/lifting-beams/</code></li></ul>
+<p class="muted">Metadata must accurately describe the page. Avoid unnatural keyword repetition or claims about services that have not been confirmed.</p>
+</section>
+
+<section><h2>5. Content standard for every guide</h2><ol>
+<li><strong>Introduction:</strong> identify the equipment and explain what the guide covers.</li>
+<li><strong>Equipment overview:</strong> explain purpose and common configurations.</li>
+<li><strong>LOLER applicability:</strong> explain when it is likely to fall within the regulations, with relevant qualifications.</li>
+<li><strong>Examination arrangements:</strong> explain default intervals and written schemes without overgeneralising.</li>
+<li><strong>Examination scope:</strong> give equipment-specific examples of components and defects.</li>
+<li><strong>Reports and defects:</strong> explain findings and next steps in plain English.</li>
+<li><strong>Enquiry CTA:</strong> reflect the company's confirmed services.</li>
+<li><strong>Sources:</strong> link to relevant HSE guidance and legislation.</li>
+</ol></section>
+
+<section><h2>6. Proposed Astro structure</h2><p>Adapt this to the repository's actual Astro 7 conventions. Reuse the existing BaseLayout and centralised site configuration; do not duplicate the site's header/footer unnecessarily.</p>
+<pre><code>src/
+├── content/
+│   └── equipment/
+│       ├── lifting-beams.md
+│       ├── chain-slings.md
+│       └── ...
+├── content.config.ts
+└── pages/
+    └── equipment/
+        ├── index.astro
+        └── [slug].astro</code></pre>
+<p>Example Markdown frontmatter:</p>
+<pre><code>---
+title: "LOLER inspections of lifting beams"
+description: "Understand when LOLER examinations may apply..."
+intro: "A short, specific introduction to lifting beams..."
+order: 1
+category: "Lifting equipment"
+---
+
+Guide content in Markdown...</code></pre>
+<p>Use configured business details and links. Do not hard-code unconfirmed contact details or a production canonical domain while it remains unverified.</p>
+</section>
+
+<section><h2>7. Acceptance checklist</h2><table><thead><tr><th>Area</th><th>Acceptance criteria</th></tr></thead><tbody>
+<tr><td>Content</td><td>Each page has distinct equipment-specific content and approved scope statements.</td></tr>
+<tr><td>Metadata</td><td>Unique title and description; canonical URL only when the production domain is verified.</td></tr>
+<tr><td>Structure</td><td>One clear H1, logical heading order, semantic article and descriptive links.</td></tr>
+<tr><td>Internal links</td><td>Directory links to all guides; relevant cross-links; existing page links to directory.</td></tr>
+<tr><td>Technical SEO</td><td>Static routes generated, included in sitemap and return successful responses after deployment.</td></tr>
+<tr><td>Accessibility</td><td>Keyboard-accessible links, visible focus, readable contrast and appropriate headings.</td></tr>
+<tr><td>Responsive layout</td><td>Directory and detail pages work on mobile, tablet and desktop.</td></tr>
+<tr><td>Tests</td><td>Build succeeds; existing tests pass; new tests cover routes, metadata, headings and links.</td></tr>
+</tbody></table></section>
+
+<section><h2>8. Decisions needed before publishing</h2><ul>
+<li>Which equipment types does the business want to cover, and which are confirmed services?</li>
+<li>Who will approve technical and regulatory wording?</li>
+<li>Can the business provide real examples or photographs to make the guides more useful?</li>
+<li>Has the production domain been verified so canonical URLs can be configured?</li>
+</ul><p class="note"><strong>Recommended delivery order:</strong> implement the content collection, directory and one complete guide; obtain business approval; then add the remaining agreed guides using the same template. This limits rework and avoids publishing multiple pages with incorrect or duplicated content.</p></section>
+</main>
+<footer>Implementation proposal for the existing LOLER Inspections Astro website. The sample article is illustrative and requires technical and business review before publication.</footer>
+</div></body></html>

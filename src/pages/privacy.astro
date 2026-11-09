@@ -2,8 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../content/site';
 import { Image } from 'astro:assets';
-
-const currentYear = new Date().getFullYear();
 ---
 <BaseLayout title={`${site.privacy.pageTitle} | ${site.company.name}`} description="Privacy notice draft awaiting business and provider details.">
   <header class="site-header">
@@ -32,13 +30,9 @@ const currentYear = new Date().getFullYear();
     </div>
   </main>
   <footer class="site-footer">
-    <div class="container footer-main">
-      <a class="footer-brand" href="#top">{site.company.name}</a>
-      <p>{site.company.serviceArea}</p>
-    </div>
     <div class="container footer-bottom">
-      <span>© {currentYear} {site.company.name}. {site.footer.copyright}</span>
-      <span>Website created by <em>Connected Web Development</em></span>
+      <span>{site.company.name}</span>
+      <a href="/">Home</a>
     </div>
   </footer>
 </BaseLayout>

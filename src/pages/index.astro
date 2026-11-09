@@ -4,16 +4,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../content/site";
 
 const currentYear = new Date().getFullYear();
-// StaticForms API key pulled from the environment at build time (never committed).
-// Cloudflare Pages: set PUBLIC_STATICFORMS_API_KEY in project environment variables.
-// Local dev: set it in `.env` (gitignored). Without it the form stays unavailable.
-const staticFormsApiKey = import.meta.env.PUBLIC_STATICFORMS_API_KEY;
-
 const enquiryFormReady =
   site.contact.form.enabled &&
   site.contact.form.providerVerified &&
   site.contact.form.privacyApproved &&
-  staticFormsApiKey &&
+  site.contact.form.apiKey &&
   site.company.email &&
   site.seo.domainVerified;
 ---
@@ -169,10 +164,10 @@ const enquiryFormReady =
       aria-labelledby="contact-title"
     >
       <div class="container contact-layout">
-        <div class="about-contact-wrap">
-          <div>
+        <div class="container about-contact-wrap">
+          <div class="about-copy">
             <p class="eyebrow"><span></span>{site.labels.about}</p>
-            <h2 id="contact-about-title">{site.about.heading}</h2>
+            <h2 id="about-title">{site.about.heading}</h2>
             {site.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
           </div>
           <div class="contact-copy">

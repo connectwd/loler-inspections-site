@@ -161,17 +161,6 @@ h2 { margin-bottom: var(--space-3); font-size: clamp(var(--step-2), 1.5vw + 1rem
   .example-list li:nth-child(6)::after {
     content: "...and more";
   }
-}
-
-@media (max-width: 620px) {
-  html { scroll-padding-top: 8rem; }
-  .container { width: calc(100% - 2rem); }
-  .header-inner { min-height: auto; column-gap: var(--space-2); }
-  .brand { order: 1; flex: 1 1 6rem; min-width: 0; }
-  .brand-logo { width: 9rem; }
-  .header-cta, .menu-toggle { height: 2.75rem; min-height: 2.75rem; flex: 0 0 auto; padding-block: 0; white-space: nowrap; }
-  .header-cta { order: 2; margin-left: 0; }
-  .button-small { padding-inline: var(--space-3); }
   .menu-toggle {
     order: 3;
     align-items: center;
@@ -190,14 +179,23 @@ h2 { margin-bottom: var(--space-3); font-size: clamp(var(--step-2), 1.5vw + 1rem
     line-height: 1;
   }
   .menu-toggle:active { background: var(--tint); }
-  .primary-nav { order: 4; width: 100%; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0; padding-block: 0; }
-  .primary-nav a { min-height: 2.75rem; display: flex; align-items: center; padding: var(--space-2); border-bottom: 1px solid var(--line); }
   .site-header.is-menu-enhanced .primary-nav { display: none; }
   .site-header.is-menu-enhanced.is-menu-open .primary-nav { display: flex; }
   .site-header.is-menu-enhanced .menu-toggle:not([hidden]) { display: inline-flex; }
-  .primary-nav a { font-size: 0.72rem; }
+  .primary-nav { order: 4; width: 100%; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0; padding-block: 0; }
+  .primary-nav a { min-height: 2.75rem; display: flex; align-items: center; padding: var(--space-2); border-bottom: 1px solid var(--line);}
+}
+
+@media (max-width: 620px) {
+  html { scroll-padding-top: 8rem; }
+  .container { width: calc(100% - 2rem); }
+  .header-inner { min-height: auto; column-gap: var(--space-2); }
+  .brand { order: 1; flex: 1 1 6rem; min-width: 0; }
+  .brand-logo { width: 9rem; }
+  .header-cta, .menu-toggle { height: 2.75rem; min-height: 2.75rem; flex: 0 0 auto; padding-block: 0; white-space: nowrap; }
+  .header-cta { order: 2; margin-left: 0; }
+  .button-small { padding-inline: var(--space-3); }
   .hero { min-height: 0; display: flex; flex-direction: column; position: relative; }
-  .hero::before { content: ""; position: absolute; inset: 0; background-image: url('../assets/elevator.jpg'); background-size: cover; background-position: center; mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.01) 30%), linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.2) 30%); }
   .hero-copy { order: 1; padding: var(--space-12) var(--space-4) var(--space-8); position: relative; }
   .hero-description { color: var(--navy); font-weight: 500;}
   .hero-media { order: 2; min-height: 17rem; display: none; position: relative;}

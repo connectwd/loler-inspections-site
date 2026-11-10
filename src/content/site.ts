@@ -6,6 +6,7 @@ import safeContractor from '../assets/safecontractor-approved.png';
 import dbsCheck from '../assets/enhanced-dbs-check-transparent.png';
 import forkLift from '../assets/pexels-caleboquendo-34585143.jpg';
 import fallProtection from '../assets/fall-protection.jpg';
+import logo from '../assets/loler-inspections-logo.jpg';
 
 export const site = {
   company: {
@@ -51,10 +52,10 @@ export const site = {
       'Forklifts, telehandlers and all accessories',
       'Tail lifts, vehicle lifts and dock levellers',
       'Sissor tables',
-      'Access platform equiptment',
-      'Height safety equiptment',
-      'Workshop equiptment',
-      'Warehouse equiptment'
+      'Access platform equipment',
+      'Height safety equipment',
+      'Workshop equipment',
+      'Warehouse equipment'
     ],
     imageAlt: 'Group of yellow tower cranes.',
   },
@@ -122,6 +123,6 @@ export const site = {
     description: 'LOLER thorough examinations and lifting-equipment inspections. Based in Wakefield and serving customers nationwide across the UK.',
     candidateDomain: 'https://loler-inspections.com',
     domainVerified: true,
-    socialImage: '/images/loler-inspections-logo.jpg',
+    socialImage: logo,
   },
 } as const;

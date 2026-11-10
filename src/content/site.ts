@@ -100,17 +100,7 @@ export const site = {
     imgAlt: 'Lifting Equiptment'
   },
   privacy: {
-    draftLabel: 'Draft — not approved for production',
-    pageTitle: 'Privacy notice draft',
-    details: [
-      { heading: 'Who is responsible for your information?', text: '[Business controller name and privacy contact details to be confirmed.]' },
-      { heading: 'What information may be collected?', text: 'The planned enquiry form asks for your name, email address, optional company name, and enquiry message. The final fields must be confirmed before the form is enabled.' },
-      { heading: 'Why is it collected and how is it used?', text: '[Purpose and lawful basis to be confirmed and approved by the business before launch.]' },
-      { heading: 'Who receives the information?', text: '[Confirm the business recipients, form provider, and any other processors. StaticForms is not configured; do not submit information through this site yet.]' },
-      { heading: 'Where is it stored and for how long?', text: '[Provider data locations, dashboard storage, retention period, and deletion process must be verified against the selected account and stated here.]' },
-      { heading: 'Your data rights and contact route', text: '[Business contact details and the appropriate route for privacy-rights requests to be supplied and approved.]' },
-      { heading: 'Cookies and other services', text: 'This MVP does not add analytics, advertising pixels, or embedded map services. Review this statement if any third-party tools are added.' },
-    ],
+    pageTitle: 'Privacy notice',
   },
   location: {
     heading: 'Based in Wakefield. Serving nationwide.',
@@ -118,7 +108,7 @@ export const site = {
   },
   footer: {
     copyright: 'All rights reserved.',
-    privacyLabel: 'Privacy notice draft',
+    privacyLabel: 'Privacy notice',
   },
   assets: {
     logo: logoImage,

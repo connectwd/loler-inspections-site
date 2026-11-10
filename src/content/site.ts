@@ -43,7 +43,7 @@ export const site = {
   services: {
     heading: 'Thorough examinations, clearly explained',
     description: 'LOLER sets requirements for the thorough examination of lifting equipment. The examination and its interval depend on the equipment and how it is used.',
-    examplesLabel: 'Examples of equipment that may be subject to LOLER',
+    examplesLabel: 'LOLER Qualifying equipment we inspect:',
     examples: [
       'Passenger, goods, service and platform lifts',
       'Patient hoists and lifting equipment for healthcare',

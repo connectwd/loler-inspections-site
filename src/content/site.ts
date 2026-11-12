@@ -11,8 +11,7 @@ import logo from '../assets/loler-inspections-logo.jpg';
 export const site = {
   company: {
     name: 'LOLER Inspections',
-    email: 'enquiries.connectedwd@outlook.com',
-    emailPlaceholder: 'Enquiry email to be supplied',
+    email: 'lolerinspections@outlook.com',
     base: 'West Yorkshire',
     serviceArea: 'Serving customers nationwide',
     description: 'A small, independent, family-owned business focused on lifting-equipment inspections.',

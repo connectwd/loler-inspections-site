@@ -179,7 +179,7 @@ const staticFormsApiKey = import.meta.env.PUBLIC_STATICFORMS_API_KEY;
         <div class="contact-panel">
           <h3>{site.labels.startConversation}</h3>
           <form
-            action={site.contact.form.endpoint}
+            action="/api/enquiry"
             method="POST"
             class="enquiry-form"
           >
@@ -242,6 +242,11 @@ const staticFormsApiKey = import.meta.env.PUBLIC_STATICFORMS_API_KEY;
               Leave this field empty{" "}
               <input name="honeypot" tabindex="-1" autocomplete="off" />
             </label>
+
+            <!-- Turnstile widget -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAF-FWoGt-F8JTVcW" data-callback="onTurnstileVerify"></div>
+            <input type="hidden" name="cf-turnstile-response" />
+
             <button class="button" type="submit"> Send enquiry </button>
           </form>
           <p class="email-placeholder">{site.company.emailPlaceholder}</p>
@@ -264,11 +269,19 @@ const staticFormsApiKey = import.meta.env.PUBLIC_STATICFORMS_API_KEY;
       <span>Website created by <em>Connected Web Development</em></span>
     </div>
   </footer>
+  <!-- Turnstile widget script -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <script>
+    // Populate hidden Turnstile token input when widget is solved
+    function onTurnstileVerify(token = "") {
+      const input = document.querySelector('input[name="cf-turnstile-response"]');
+      if (input instanceof HTMLInputElement) input.value = token;
+    }
+
     const header = document.querySelector(".site-header");
-    const headerCta = document.querySelector<HTMLAnchorElement>(".header-cta");
-    const menuToggle =
-      document.querySelector<HTMLButtonElement>(".menu-toggle");
+    const headerCta = document.querySelector(".header-cta");
+    const menuToggle = document.querySelector(".menu-toggle");
     const primaryNavigation = document.querySelector("#primary-navigation");
 
     if (header && menuToggle && primaryNavigation) {
@@ -279,7 +292,8 @@ const staticFormsApiKey = import.meta.env.PUBLIC_STATICFORMS_API_KEY;
       const closeMenu = (restoreFocus = true) => {
         header.classList.remove("is-menu-open");
         menuToggle.setAttribute("aria-expanded", "false");
-        if (restoreFocus) menuToggle.focus({ preventScroll: true });
+        if (restoreFocus && menuToggle instanceof HTMLElement)
+          menuToggle.focus({ preventScroll: true });
       };
 
       menuToggle.addEventListener("click", () => {
@@ -336,7 +350,7 @@ const staticFormsApiKey = import.meta.env.PUBLIC_STATICFORMS_API_KEY;
       });
 
       header.classList.add("is-menu-enhanced");
-      menuToggle.hidden = false;
+      if (menuToggle instanceof HTMLElement) menuToggle.hidden = false;
     }
   </script>
 </BaseLayout>

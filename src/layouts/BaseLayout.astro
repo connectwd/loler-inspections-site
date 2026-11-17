@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import '../styles/base.css';
 import { site } from '../content/site';
 
 interface Props {
@@ -12,7 +12,7 @@ const canonicalUrl = site.seo.domainVerified
   ? new URL(Astro.url.pathname, site.seo.candidateDomain).href
   : undefined;
 const socialImage = site.seo.socialImage
-  ? new URL(site.seo.socialImage, site.seo.candidateDomain).href
+  ? new URL(site.seo.socialImage.src, site.seo.candidateDomain).href
   : undefined;
 
 const basePath = import.meta.env.BASE_URL || '/loler-inspections-site';
@@ -33,7 +33,7 @@ const localBusinessSchema = {
   },
   areaServed: 'United Kingdom',
   priceRange: '££',
-  telephone: site.company.emailPlaceholder,
+  telephone: site.company.email,
 };
 
 const serviceSchema = {

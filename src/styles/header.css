@@ -1,0 +1,17 @@
+.site-header { position: relative; z-index: 2; background: var(--white); border-bottom: 1px solid var(--line); }
+.header-inner { min-height: 5.25rem; display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); }
+.brand { display: inline-flex; align-items: center; flex: 0 1 16rem; }
+.brand-logo { width: 16rem; height: auto; object-fit: contain; }
+.menu-toggle { display: none; }
+.primary-nav { display: flex; align-items: center; justify-content: center; gap: clamp(var(--space-4), 3vw, var(--space-8)); }
+.primary-nav { order: 2; }
+.header-cta { order: 3; }
+.primary-nav a, .footer-main > a:last-child { color: var(--muted); text-decoration: none; font-size: var(--step--2); font-weight: 600; }
+.primary-nav a { padding-block: var(--space-4); }
+.primary-nav a:hover, .footer-main > a:last-child:hover, .text-link:hover { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 0.3em; }
+.button { min-height: 2.875rem; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3); padding: var(--space-3) var(--space-6); border: 1px solid var(--navy); border-radius: var(--radius); color: var(--white); background: var(--navy); text-decoration: none; font-size: var(--step--2); font-weight: 700; transition: background-color 140ms ease, color 140ms ease; }
+.button:hover { color: var(--navy); background: var(--white); }
+.button:active { background: var(--tint); }
+.button-small { min-height: 2.75rem; padding-inline: var(--space-4); }
+.button span { color: var(--gold); font-size: var(--step-1); line-height: 1; }
+.text-link { min-height: 2.75rem; display: inline-flex; align-items: center; gap: var(--space-2); color: var(--navy); font-size: var(--step--1); font-weight: 700; text-decoration: none; text-underline-offset: 0.3em; }

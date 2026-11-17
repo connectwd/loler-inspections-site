@@ -23,7 +23,6 @@ test.describe('LOLER Inspections Site - User Experience Tests', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
 
-    const menuToggle = page.getByRole('button', { name: 'Menu', exact: true });
     const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
 
     await page.locator('.header-cta').focus();

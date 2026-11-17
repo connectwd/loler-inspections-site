@@ -14,8 +14,7 @@ test.describe('LOLER Inspections Site - User Experience Tests', () => {
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
 
     const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
-    const menuToggle = page.getByRole('button', { name: 'Menu', exact: true });
-
+    
     await expect(navigation).toBeVisible();
   });
 
